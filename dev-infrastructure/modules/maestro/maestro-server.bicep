@@ -130,7 +130,18 @@ module csManagedIdentityDatabaseAccess '../postgres/postgres-access.bicep' = if 
 //   E V E N T G R I D
 //
 
-module evengGridAccess './maestro-eventgrid-access.bicep' = {
+module eventGridPrivateEndpoint './eventgrid-pe.bicep' = {
+  name: '${deployment().name}-pe'
+  params: {
+    location: location
+    eventgridName: maestroEventGridNamespaceName
+    eventgridId: resourceId(maestroInfraResourceGroup, 'Microsoft.EventGrid/namespaces', maestroEventGridNamespaceName)
+    subnetId: privateEndpointSubnetId
+    vnetId: privateEndpointVnetId
+  }
+}
+
+module eventGridAccess './maestro-eventgrid-access.bicep' = {
   name: '${deployment().name}-event-grid-access'
   scope: resourceGroup(maestroInfraResourceGroup)
   params: {
@@ -143,4 +154,7 @@ module evengGridAccess './maestro-eventgrid-access.bicep' = {
     certificateAccessManagedIdentityPrincipalId: maestroServerManagedIdentityPrincipalId
     location: location
   }
+  dependsOn: [
+    eventGridPrivateEndpoint
+  ]
 }
