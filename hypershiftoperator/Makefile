@@ -32,7 +32,7 @@ deploy:
 	helm upgrade --install hypershift deploy/helm \
 		--create-namespace --namespace hypershift \
 		--set hypershift-operator.image=${HO_IMAGE} \
-		--set hypershift-operator.registryOverrides=quay.io/openshift-release-dev/ocp-v4.0-art-dev=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release,quay.io/openshift-release-dev/ocp-release=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release-images,${ARO_HCP_IMAGE_ACR}.redhat.io/redhat=arohcpdev.azurecr.io/redhat \
+		--set hypershift-operator.registryOverrides="quay.io/openshift-release-dev/ocp-v4.0-art-dev=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release\,quay.io/openshift-release-dev/ocp-release=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release-images\,${ARO_HCP_IMAGE_ACR}.redhat.io/redhat=arohcpdev.azurecr.io/redhat" \
 		--set external-dns.image=${ED_IMAGE} \
 		--set external-dns.txtOwnerId=${RESOURCEGROUP} \
 		--set external-dns.domain=${ZONE_NAME} \
