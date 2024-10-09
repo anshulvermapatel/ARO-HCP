@@ -30,15 +30,15 @@ build-helm-chart:
 
 deploy:
 	helm upgrade --install hypershift deploy/helm \
-		--namespace hypershift \
+		--create-namespace --namespace hypershift \
 		--set hypershift-operator.image=${HO_IMAGE} \
 		--set hypershift-operator.registryOverrides=quay.io/openshift-release-dev/ocp-v4.0-art-dev=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release,quay.io/openshift-release-dev/ocp-release=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release-images,${ARO_HCP_IMAGE_ACR}.redhat.io/redhat=arohcpdev.azurecr.io/redhat \
-		--set exgernal-dns.image=${ED_IMAGE} \
-		--set exgernal-dns.txtOwnerId=${RESOURCEGROUP} \
-		--set exgernal-dns.domain=${ZONE_NAME} \
-		--set exgernal-dns.credentials.tenantId=${AZURE_TENANT_ID} \
-		--set exgernal-dns.credentials.subscriptionId=${AZURE_SUBSCRIPTION_ID} \
-		--set exgernal-dns.credentials.resourceGroup=${REGIONAL_RESOURCEGROUP} \
-		--set exgernal-dns.credentials.userAssignedIdentityID=${EXTERNAL_DNS_OPERATOR_MI_CLIENT_ID}
+		--set external-dns.image=${ED_IMAGE} \
+		--set external-dns.txtOwnerId=${RESOURCEGROUP} \
+		--set external-dns.domain=${ZONE_NAME} \
+		--set external-dns.credentials.tenantId=${AZURE_TENANT_ID} \
+		--set external-dns.credentials.subscriptionId=${AZURE_SUBSCRIPTION_ID} \
+		--set external-dns.credentials.resourceGroup=${REGIONAL_RESOURCEGROUP} \
+		--set external-dns.credentials.userAssignedIdentityID=${EXTERNAL_DNS_OPERATOR_MI_CLIENT_ID}
 
 .PHONY: build-helm-chart create-edo-azure-creds create-edo-sa-patch create-domain-file create-txt-owner-id-file deploy unpack-ho-manifests
