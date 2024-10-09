@@ -7,7 +7,7 @@ hypershift-operator:
   image: ""
   registryOverrides: ""
 
-exgernal-dns:
+external-dns:
   image: ""
   txtOwnerId: ""
   domain: ""
