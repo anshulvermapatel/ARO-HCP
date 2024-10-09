@@ -34,7 +34,7 @@ spec:
         - --azure-config-file=/etc/provider/credentials
         command:
         - /ko-app/external-dns
-        image: {{ .Values.image }}
+        image: "{{ .Values.image }}"
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
