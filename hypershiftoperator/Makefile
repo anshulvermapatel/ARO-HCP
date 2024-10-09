@@ -29,7 +29,7 @@ build-helm-chart:
 		--output-dir=${HO_CHART_DIR}
 
 deploy:
-	helm upgrade --install maestro-server deploy/helm/server \
+	helm upgrade --install hypershift deploy/helm \
 		--namespace hypershift \
 		--set hypershift-operator.image=${HO_IMAGE} \
 		--set hypershift-operator.registryOverrides=quay.io/openshift-release-dev/ocp-v4.0-art-dev=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release,quay.io/openshift-release-dev/ocp-release=${ARO_HCP_IMAGE_ACR}.azurecr.io/openshift/release-images,${ARO_HCP_IMAGE_ACR}.redhat.io/redhat=arohcpdev.azurecr.io/redhat \
