@@ -1,0 +1,36 @@
+
+identity:
+  userAssignedIdentities:
+    "/subscriptions/<subscription_id>/resourcegroups/my-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/my-user": {}
+  type: UserAssigned
+properties:
+  environmentId: "/subscriptions/<subscription_id>/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube"
+  configuration:
+    replicaTimeout: 10
+    replicaRetryLimit: 10
+    manualTriggerConfig:
+      replicaCompletionCount: 1
+      parallelism: 4
+    triggerType: Manual
+  template:
+    containers:
+    - image: arohcpdev.azurecr.io/image-sync/component-sync:latest
+      name: syncComponents
+      volumeMounts:
+      - name: pull-secrets-updated
+        mountPath: "/etc/containers"
+    initContainers:
+    - image: mcr.microsoft.com/azure-cli:cbl-mariner2.0
+      name: login
+      resources:
+        cpu: 0.2
+        memory: 100Mi
+      command: ['sh', '-c',
+          "az login --federated-token $(cat $AZURE_FEDERATED_TOKEN_FILE) --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID; accessToken=$(az acr login --name {{ .Values.acrRegistryName }} --expose-token | grep accessToken |cut -d ':' -f2| tr -d ' \",') ; cat /tmp/secret-orig/pull-secret | base64 -d  |sed \"s/TOKENTOBEREPLACED/$accessToken/\" > /etc/containers/auth.json",
+        ]
+      volumeMounts:
+      - name: pull-secrets-updated
+        mountPath: "/etc/containers"
+    volumes:
+    - name: pull-secrets-updated
+    emptyDir: {}
