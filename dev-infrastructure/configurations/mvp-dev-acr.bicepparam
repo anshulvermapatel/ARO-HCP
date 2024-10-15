@@ -25,6 +25,13 @@ param quayRepositoriesToCache = [
     userIdentifier: 'quay-componentsync-username'
     passwordIdentifier: 'quay-componentsync-password'
   }
+  {
+    ruleName: 'acm-d'
+    sourceRepo: 'quay.io/acm-d'
+    targetRepo: 'acm-d'
+    userIdentifier: 'acm-d-componentsync-username'
+    passwordIdentifier: 'acm-d-componentsync-password'
+  }
 ]
 
 param keyVaultName = 'aro-hcp-dev-global-kv'
