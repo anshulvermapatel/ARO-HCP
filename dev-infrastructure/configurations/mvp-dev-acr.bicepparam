@@ -27,8 +27,11 @@ param quayRepositoriesToCache = [
   }
   {
     ruleName: 'acm-d'
-    sourceRepo: 'quay.io/acm-d'
-    targetRepo: 'acm-d'
+    sourceRepo: 'quay.io/acm-d/*'
+    targetRepo: 'acm-d/*'
+    purgeFilter: ''
+    purgeAfter: '100d'
+    imagesToKeep: 1
     userIdentifier: 'acm-d-componentsync-username'
     passwordIdentifier: 'acm-d-componentsync-password'
   }
