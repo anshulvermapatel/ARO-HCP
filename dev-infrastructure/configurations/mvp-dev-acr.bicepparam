@@ -26,11 +26,11 @@ param quayRepositoriesToCache = [
     passwordIdentifier: 'quay-componentsync-password'
   }
   {
-    ruleName: 'acm-d'
-    sourceRepo: 'quay.io/acm-d/*'
-    targetRepo: 'acm-d/*'
-    purgeFilter: ''
-    purgeAfter: '100d'
+    ruleName: 'acm-d-mce'
+    sourceRepo: 'quay.io/acm-d/multicluster-engine/*'
+    targetRepo: 'acm-d-mce/multicluster-engine/*'
+    purgeFilter: 'quay.io/acm-d/multicluster-engine/*'
+    purgeAfter: '10d'
     imagesToKeep: 1
     userIdentifier: 'acm-d-componentsync-username'
     passwordIdentifier: 'acm-d-componentsync-password'
