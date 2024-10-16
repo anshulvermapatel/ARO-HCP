@@ -65,7 +65,6 @@ undeploy: undeploy-shared undeploy-component-sync undeploy-oc-mirror
 
 deploy-ca-component-sync:
 	az containerapp job create -n component-sync-job -g ${IMAGE_SYNC_RESOURCEGROUP} \
-		--environment ${IMAGE_SYNC_ENVIRONMENT} \
-		--yaml ./componentSync/mvp-componentsyncJob.yml
+		--yaml ./componentSync/mvp-componentSyncJob.yml
 
 .PHONY: deploy-caj-component-sync deploy-component-sync deploy-shared deploy-oc-mirror undeploy-shared undeploy-component-sync undeploy-oc-mirror
