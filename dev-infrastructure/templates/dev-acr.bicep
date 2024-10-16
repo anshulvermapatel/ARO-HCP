@@ -138,7 +138,10 @@ resource secretAccessPermission 'Microsoft.Authorization/roleAssignments@2022-04
 ]
 
 resource purgeCached 'Microsoft.ContainerRegistry/registries/tasks@2019-04-01' = [
-  for repo in quayRepositoriesToCache: if (contains(repo, 'purgeFilter') && contains(repo, 'imagesToKeep') && contains(repo, 'purgeAfter')) {
+  for repo in quayRepositoriesToCache: if (contains(repo, 'purgeFilter') && contains(repo, 'imagesToKeep') && contains(
+    repo,
+    'purgeAfter'
+  )) {
     name: '${repo.ruleName}-purge'
     location: location
     parent: acrResource
