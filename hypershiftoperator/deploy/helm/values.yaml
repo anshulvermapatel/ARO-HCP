@@ -6,6 +6,9 @@ name: aro-hcp-hypershift-operator
 hypershift-operator:
   image: ""
   registryOverrides: ""
+  azure:
+    keyVault:
+      clientId: ""
 
 external-dns:
   image: ""

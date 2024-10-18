@@ -3,11 +3,9 @@ aws:
     credsSecret: ""
     credsSecretKey: ""
     region: ""
-externaldns:
-  credsSecret: ""
-  domainFilter: ""
-  image: ""
-  txtOwnerId: ""
+azure:
+  keyVault:
+    clientId: ""
 image: ""
 oidc:
   s3:
