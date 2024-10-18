@@ -17,12 +17,11 @@ clean:
 build-push: image push
 
 image:
-	cp ../../image-sync/configuration/mvp-image-sync.yml config.yml
-	docker build --platform="linux/amd64" -f "./Dockerfile" -t ${ARO_HCP_IMAGE_SYNC_IMAGE}:${COMMIT} .
+	docker build --platform="linux/amd64" -f "./Dockerfile" -t ${ARO_HCP_IMAGE_SYNC_IMAGE}:testing .
 
 push:
-	docker tag ${ARO_HCP_IMAGE_SYNC_IMAGE}:${COMMIT} ${ARO_HCP_IMAGE_SYNC_IMAGE}:latest
-	docker push ${ARO_HCP_IMAGE_SYNC_IMAGE}:${COMMIT}
-	docker push ${ARO_HCP_IMAGE_SYNC_IMAGE}:latest
+	docker tag ${ARO_HCP_IMAGE_SYNC_IMAGE}:testing ${ARO_HCP_IMAGE_SYNC_IMAGE}:latest
+	docker push ${ARO_HCP_IMAGE_SYNC_IMAGE}:testing
+	# docker push ${ARO_HCP_IMAGE_SYNC_IMAGE}:latest
 
 .PHONY: image-sync clean image run deploy
