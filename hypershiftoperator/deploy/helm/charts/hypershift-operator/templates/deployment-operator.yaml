@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    hypershift.openshift.io/install-cli-version: 'openshift/hypershift: faaf4d1f01b8b22dc23e58e2269701030dacd197.
+    hypershift.openshift.io/install-cli-version: 'openshift/hypershift: 5d8b14a6bb05900cac843a51d33290f57ee02f7a.
       Latest supported OCP: 4.18.0'
   creationTimestamp: null
   name: operator
